@@ -143,18 +143,44 @@
     }
     processOrder() {
       const thisProduct = this;
+      console.log('processOrder: ', thisProduct);
+
       const formData = utils.serializeFormToObject(thisProduct.form);
-      for (let parm in thisProduct.data.params) {
+      console.log('formData: ', formData);
 
-        console.log(thisProduct.data.params[parm]);
+      let price = thisProduct.data.price;
+      console.log('price: ', price);
+
+      for (let paramId in thisProduct.data.params) {
+
+
+        const selected = thisProduct.data.params[paramId];
+
+
+        for (let optionId in selected.options) {
+
+          const option = selected.options[optionId];
+          console.log('option: ', option);
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+
+          if (optionSelected && !option.default) {
+            console.log('!option default:', !option.default);
+            price += option.price;
+            console.log('price +:', option.price);
+
+          } else if (!optionSelected && option.default) {
+            price -= option.price;
+
+            console.log('price -:', option.price);
+          }
+
+        }
       }
-
+      thisProduct.priceElem.innerHTML = price;
 
 
     }
-
   }
-
 
 
   const app = {
