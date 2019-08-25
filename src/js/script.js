@@ -92,6 +92,8 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+
     }
 
     initAccordion() {
@@ -143,13 +145,13 @@
     }
     processOrder() {
       const thisProduct = this;
-      console.log('processOrder: ', thisProduct);
+      // console.log('processOrder: ', thisProduct);
 
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData: ', formData);
+      //console.log('formData: ', formData);
 
       let price = thisProduct.data.price;
-      console.log('price: ', price);
+      // console.log('price: ', price);
 
       for (let paramId in thisProduct.data.params) {
 
@@ -160,19 +162,35 @@
         for (let optionId in selected.options) {
 
           const option = selected.options[optionId];
-          console.log('option: ', option);
+          //console.log('option: ', option);
           const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
 
           if (optionSelected && !option.default) {
-            console.log('!option default:', !option.default);
+            // console.log('!option default:', !option.default);
             price += option.price;
-            console.log('price +:', option.price);
+            //console.log('price +:', option.price);
 
           } else if (!optionSelected && option.default) {
             price -= option.price;
 
-            console.log('price -:', option.price);
+            // console.log('price -:', option.price);
           }
+          const images = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          if (optionSelected) {
+            for (let image of images) {
+              image.classList.add('active');
+
+            }
+
+          } else if (!optionSelected) {
+            for (let image of images) {
+              image.classList.remove('active');
+            }
+          }
+
+
+
+
 
         }
       }
