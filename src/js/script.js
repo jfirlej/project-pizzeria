@@ -28,7 +28,7 @@
     widgets: {
       amount: {
         input: 'input.amount', // CODE CHANGED
-        input: 'input[name="amount"]',
+
         linkDecrease: 'a[href="#less"]',
         linkIncrease: 'a[href="#more"]',
       },
@@ -346,6 +346,12 @@
       const thisApp = this;
       thisApp.data = dataSource;
     },
+    initCart: function () {
+      const thisApp = this;
+
+      const cartElm = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElm);
+    },
 
 
 
@@ -359,6 +365,7 @@
 
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
     },
   };
 
