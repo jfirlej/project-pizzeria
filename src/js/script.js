@@ -254,6 +254,7 @@
 
 
       thisWidget.getElements(element);
+
       thisWidget.value = settings.amountWidget.defaultValue; //do sprawdzenia
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
@@ -323,12 +324,38 @@
       const thisCart = this;
       thisCart.products = [];
       thisCart.getElements(element);
+      thisCart.initActions();
       console.log('new Cart', thisCart);
     }
     getElements(element) {
       const thisCart = this;
       thisCart.dom = {};
       thisCart.dom.wrapper = element;
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      console.log(thisCart.dom.toggleTrigger, 'co to jest');
+
+    }
+    initActions() {
+      const thisCart = this;
+      thisCart.dom.toggleTrigger.addEventListener('click', function () {
+        const a = thisCart.dom.wrapper.classList.contains('active');
+        console.log(a);
+        if (a == false) {
+          thisCart.dom.wrapper.classList.add(classNames.cart.wrapperActive);
+        } else {
+          thisCart.dom.wrapper.classList.remove(classNames.cart.wrapperActive);
+        }
+
+
+      });
+
+
+
+
+
+
+
+
     }
   }
 
