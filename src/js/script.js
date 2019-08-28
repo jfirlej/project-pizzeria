@@ -338,9 +338,9 @@
     initActions() {
       const thisCart = this;
       thisCart.dom.toggleTrigger.addEventListener('click', function () {
-        const a = thisCart.dom.wrapper.classList.contains('active');
-        console.log(a);
-        if (a == false) {
+        const showWrapper = thisCart.dom.wrapper.classList.contains('active');
+        console.log(showWrapper);
+        if (showWrapper == false) {
           thisCart.dom.wrapper.classList.add(classNames.cart.wrapperActive);
         } else {
           thisCart.dom.wrapper.classList.remove(classNames.cart.wrapperActive);
