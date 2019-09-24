@@ -5,8 +5,8 @@ import {
   Cart
 } from './components/Cart.js';
 import {
-  select,
-  settings
+  select
+  , settings, classNames
 } from './settings.js';
 
 const app = {
@@ -22,12 +22,13 @@ const app = {
     const thisApp = this;
 
     thisApp.data = {};
-    // const url = settings.db.url + '/' + settings.db.product;
+    const url = `https:${settings.db.url}/${settings.db.product}`;
+
     // const url = '//localhost:3131/product';
-    console.log('//localhost:3131/product');
+    //console.log('//localhost:3131/product');
 
 
-    fetch('http://localhost:3131/product')
+    fetch(url)
       .then(function (rawResponse) {
         return rawResponse.json();
       })
@@ -58,12 +59,12 @@ const app = {
     const thisApp = this;
     //console.log('*** App starting ***');
     // console.log('thisApp:', thisApp);
-    //  console.log('classNames:', classNames);
+    console.log('classNames:', classNames);
     //  console.log('settings:', settings);
     //  console.log('templates:', templates);
 
     thisApp.initData();
-    // thisApp.initMenu();
+    //thisApp.initMenu();
     thisApp.initCart();
   },
 };
