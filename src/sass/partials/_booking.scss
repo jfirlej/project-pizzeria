@@ -179,7 +179,7 @@
 
       &::after {
         position: absolute;
-        content: "";
+        content: '';
         width: 100%;
         height: 100%;
         left: 0;
@@ -190,12 +190,12 @@
     }
   }
 
-  [data-table="1"] {
+  [data-table='1'] {
     left: 40px;
     top: 40px;
   }
 
-  [data-table="2"] {
+  [data-table='2'] {
     right: 25px;
     top: 25px;
     width: 100px;
@@ -203,7 +203,7 @@
     line-height: 100px;
   }
 
-  [data-table="3"] {
+  [data-table='3'] {
     right: 40px;
     top: 180px;
   }
@@ -212,4 +212,16 @@
 .booking-options {
   @include flex(row, flex-start, space-between);
   margin: ($base-size * 4) auto;
+}
+
+.rangeSlider__handle .allOccupied {
+  background-color: #ff0000;
+}
+
+.rangeSlider__handle .allFree {
+  background-color: #82ff48;
+}
+
+.rangeSlider__handle .oneFree {
+  background-color: #ffef14;
 }
